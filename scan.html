@@ -959,7 +959,7 @@
     <h2>Let's Fix Every Issue Together</h2>
     <p>Book a free 30-min strategy call. We'll walk through the full redesign and show you exactly how to turn your site into a lead machine.</p>
     <!-- TODO: replace with your Calendly link -->
-    <a href="https://calendly.com/cancithebuilder" target="_blank" class="btn-book">Book My Free Strategy Call</a>
+    <a href="https://calendly.com/jozo-cancar27/30min" target="_blank" class="btn-book">Book My Free Strategy Call</a>
     <div class="btn-book-sub">No commitment · No sales pressure · Just a real plan</div>
     <!-- 7. PDF Download -->
     <div style="margin-top:16px;">
@@ -1145,13 +1145,22 @@
     ).join('');
   }
 
-  function submitEmail() {
+  async function submitEmail() {
     const email = document.getElementById('emailInput').value.trim();
     if (!email || !email.includes('@')) {
       document.getElementById('emailInput').focus(); return;
     }
-    // TODO: connect to your email service (Resend, Mailchimp, etc.)
-    console.log('Email captured:', email);
+    try {
+      await fetch('https://cancilab-api-production.up.railway.app/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          domain: document.getElementById('resultDomain')?.textContent || '',
+          score: document.getElementById('scoreValue')?.textContent || ''
+        })
+      });
+    } catch (e) { console.warn('Lead capture failed:', e); }
     document.getElementById('emailInput').style.display = 'none';
     document.querySelector('.email-btn').style.display = 'none';
     document.getElementById('emailConfirm').style.display = 'block';
