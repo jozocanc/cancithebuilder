@@ -1275,6 +1275,31 @@
     .scanner-loading { padding: 60px 24px; }
     .scanner-results { padding: 60px 24px; }
   }
+
+  /* ── Stats Bar ───────────────────────────────── */
+  .stats-bar { background: var(--yellow); padding: 60px 24px; }
+  .stats-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 32px; }
+  .stat-item { text-align: center; flex: 1; min-width: 120px; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--dark); line-height: 1; }
+  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 6px; opacity: 0.7; }
+  .stat-divider { width: 1px; height: 60px; background: rgba(15,27,45,0.15); }
+  @media (max-width: 600px) { .stat-divider { display: none; } .stats-inner { justify-content: center; } }
+
+  /* ── FAQ ─────────────────────────────────────── */
+  .faq { background: #050d17; padding: 120px 60px; }
+  .faq .section-header { text-align: center; }
+  .faq .section-tag { justify-content: center; }
+  .faq .section-tag::before { display: none; }
+  .faq-list { max-width: 720px; margin: 56px auto 0; display: flex; flex-direction: column; gap: 8px; }
+  .faq-item { border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.02); }
+  .faq-item:hover { border-color: rgba(255,208,0,0.2); }
+  .faq-q { padding: 22px 28px; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 1.05rem; color: var(--white); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; user-select: none; }
+  .faq-arrow { font-size: 1.5rem; color: var(--yellow); transition: transform 0.25s; flex-shrink: 0; }
+  .faq-item.open .faq-arrow { transform: rotate(45deg); }
+  .faq-a { display: none; padding: 0 28px 22px; font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.75; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px; }
+  .faq-item.open .faq-a { display: block; }
+  @media (max-width: 768px) { .faq { padding: 80px 24px; } .faq-q { font-size: 0.95rem; padding: 18px 20px; } }
+
 </style>
 </head>
 <body>
