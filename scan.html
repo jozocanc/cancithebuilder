@@ -1036,16 +1036,7 @@
     const arc = document.getElementById('scoreArc');
     arc.style.strokeDashoffset = circ - (score / 100) * circ;
     arc.style.stroke = score < 40 ? '#ff6b6b' : score < 65 ? '#F07020' : '#6bffaa';
-
-    // Screenshot
-    if (data.screenshot) {
-      const img = document.getElementById('siteScreenshot');
-      img.src = data.screenshot;
-      img.style.display = 'block';
-      img.onerror = () => img.style.display = 'none';
-    }
-
-    // Issues
+// Issues
     document.getElementById('issuesList').innerHTML = (data.issues || []).map(issue => `
       <div class="issue-item">
         <div class="issue-num ${issue.severity}">${issue.number}</div>
