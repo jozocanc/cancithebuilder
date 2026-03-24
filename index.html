@@ -1500,6 +1500,112 @@
   </div>
 </section>
 
+
+<!-- STATS BAR -->
+<section class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">20+</div>
+      <div class="stat-label">Sites Launched</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item reveal">
+      <div class="stat-num">7</div>
+      <div class="stat-label">Days Average Delivery</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item reveal">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">On-Time Delivery</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item reveal">
+      <div class="stat-num">+47pts</div>
+      <div class="stat-label">Avg Score Increase</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-header reveal">
+    <p class="section-tag">Transparent Pricing</p>
+    <h2 class="section-title">No Surprises. <span>No Fluff.</span></h2>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <div class="pricing-name">Starter</div>
+      <div class="pricing-price">$299</div>
+      <div class="pricing-sub">One-page landing site</div>
+      <ul class="pricing-list">
+        <li>High-converting single page</li>
+        <li>Mobile responsive</li>
+        <li>Contact / booking section</li>
+        <li>Live in 5 days</li>
+        <li>1 round of revisions</li>
+      </ul>
+      <a href="https://calendly.com/jozo-cancar27/30min" target="_blank" class="btn-primary">Book a Call</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-name">Business</div>
+      <div class="pricing-price">$599</div>
+      <div class="pricing-sub">Full multi-page website</div>
+      <ul class="pricing-list">
+        <li>Up to 5 pages</li>
+        <li>SEO optimized</li>
+        <li>Google Analytics setup</li>
+        <li>Live in 7 days</li>
+        <li>2 rounds of revisions</li>
+      </ul>
+      <a href="https://calendly.com/jozo-cancar27/30min" target="_blank" class="btn-primary">Book a Call</a>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="pricing-name">Custom</div>
+      <div class="pricing-price">Let's Talk</div>
+      <div class="pricing-sub">E-commerce, portals, custom builds</div>
+      <ul class="pricing-list">
+        <li>Fully custom scope</li>
+        <li>E-commerce ready</li>
+        <li>Integrations & automation</li>
+        <li>Timeline based on scope</li>
+        <li>Unlimited revisions</li>
+      </ul>
+      <a href="https://calendly.com/jozo-cancar27/30min" target="_blank" class="btn-primary">Book a Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-header reveal">
+    <p class="section-tag">Common Questions</p>
+    <h2 class="section-title">Got <span>Questions?</span></h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">How long does it really take? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Most projects are live in 5–7 days from the moment I have your content. I don't sit on projects — when you book, I start.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to provide content? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Ideally yes — you know your business best. But I can help write copy if needed. We go over everything on the strategy call.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">What if I don't like the design? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Every package includes revision rounds. I don't consider a project done until you're happy with it.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Do you do ongoing maintenance? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Yes — I offer monthly maintenance plans for updates, edits, and performance monitoring. Ask me about it on the call.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">What do I need to get started? <span class="faq-arrow">+</span></div>
+      <div class="faq-a">Just book a free 30-min strategy call. We'll scope the project, align on goals, and I'll send a proposal the same day.</div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA / SCANNER -->
 <section class="cta" id="contact">
   <h2 class="cta-headline reveal">
@@ -1542,6 +1648,12 @@
   reveals.forEach(el => observer.observe(el));
 
   // ── Scanner ──
+
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+
   function goToScan() {
     const raw = document.getElementById('urlInput').value.trim();
     if (!raw) { document.getElementById('urlInput').focus(); return; }
