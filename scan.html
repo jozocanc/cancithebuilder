@@ -247,32 +247,47 @@
     .screenshot-wrap { background: #050d17; position: relative; }
     .site-screenshot { width: 100%; display: block; opacity: 0.75; }
     .issues-list {
-      padding: 12px;
+      padding: 16px;
       background: rgba(0,0,0,0.25);
       border-top: 1px solid var(--border);
-      display: flex; flex-direction: column; gap: 8px;
+      display: flex; flex-direction: column; gap: 10px;
     }
     .issue-item {
-      display: flex; gap: 10px; align-items: flex-start;
+      display: flex; gap: 14px; align-items: flex-start;
       background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 2px; padding: 10px 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px; padding: 14px 16px;
+      transition: border-color 0.2s;
     }
-    .issue-num {
-      width: 20px; height: 20px; border-radius: 50%;
-      font-size: 0.65rem; font-weight: 800;
+    .issue-item.crit { border-left: 3px solid #ff4d4d; }
+    .issue-item.warn { border-left: 3px solid var(--orange); }
+    .issue-item.info { border-left: 3px solid var(--yellow); }
+    .issue-item:hover { border-color: rgba(255,255,255,0.12); }
+    .issue-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      font-size: 0.7rem; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.5px;
     }
-    .issue-num.crit { background: #ff4d4d; color: #fff; }
-    .issue-num.warn { background: var(--orange); color: #fff; }
-    .issue-num.info { background: var(--yellow); color: var(--dark); }
+    .issue-icon.crit { background: rgba(255,77,77,0.15); color: #ff4d4d; }
+    .issue-icon.warn { background: rgba(240,112,32,0.15); color: var(--orange); }
+    .issue-icon.info { background: rgba(255,208,0,0.15); color: var(--yellow); }
     .issue-item h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem; font-weight: 700; color: var(--white);
-      margin-bottom: 2px; letter-spacing: 0.3px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem; font-weight: 700; color: var(--white);
+      margin-bottom: 4px;
     }
-    .issue-item p { font-size: 0.68rem; color: var(--gray); line-height: 1.5; }
+    .issue-item p { font-size: 0.78rem; color: var(--gray); line-height: 1.6; }
+    .issue-tag {
+      display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 2px 7px; border-radius: 3px;
+      margin-bottom: 5px;
+    }
+    .issue-tag.crit { background: rgba(255,77,77,0.15); color: #ff4d4d; }
+    .issue-tag.warn { background: rgba(240,112,32,0.15); color: var(--orange); }
+    .issue-tag.info { background: rgba(255,208,0,0.15); color: var(--yellow); }
 
     /* Wireframe */
     .wf-card {
@@ -1041,10 +1056,12 @@
     arc.style.strokeDashoffset = circ - (score / 100) * circ;
     arc.style.stroke = score < 40 ? '#ff6b6b' : score < 65 ? '#F07020' : '#6bffaa';
 // Issues
+    const severityLabel = { crit: 'Critical', warn: 'Warning', info: 'Quick Win' };
     document.getElementById('issuesList').innerHTML = (data.issues || []).map(issue => `
-      <div class="issue-item">
-        <div class="issue-num ${issue.severity}">${issue.number}</div>
+      <div class="issue-item ${issue.severity}">
+        <div class="issue-icon ${issue.severity}">${issue.number}</div>
         <div>
+          <span class="issue-tag ${issue.severity}">${severityLabel[issue.severity] || issue.severity}</span>
           <h4>${issue.title}</h4>
           <p>${issue.description}</p>
         </div>
