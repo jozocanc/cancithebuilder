@@ -773,15 +773,7 @@
       </div>
       <div class="node-status">Waiting</div>
     </div>
-    <div class="node" id="node-3">
-      <div class="node-icon">📸</div>
-      <div class="node-text">
-        <div class="node-name">Screenshot</div>
-        <div class="node-desc">Capturing your site visually</div>
-      </div>
-      <div class="node-status">Waiting</div>
-    </div>
-    <div class="node" id="node-4">
+<div class="node" id="node-4">
       <div class="node-icon">🤖</div>
       <div class="node-text">
         <div class="node-name">Claude AI Analysis</div>
@@ -1035,7 +1027,7 @@
 
 <script>
   const API = 'https://cancilab-api-production.up.railway.app/api/scan';
-  const nodeDelays = [600, 1400, 2400, 3600, 5000, 7000];
+  const nodeDelays = [500, 1200, 2200, 3400, 4800];
 
   function getUrl() {
     return decodeURIComponent(new URLSearchParams(window.location.search).get('url') || '');
@@ -1045,7 +1037,7 @@
     try { return new URL(url).hostname.replace('www.', ''); } catch { return url; }
   }
 
-  function animateNodes(onDone) {
+  function animateNodes() {
     const nodes = document.querySelectorAll('.node');
     nodeDelays.forEach((delay, i) => {
       setTimeout(() => {
@@ -1056,15 +1048,16 @@
         }
         nodes[i].classList.add('active');
         nodes[i].querySelector('.node-status').textContent = 'Running';
-        if (i === nodes.length - 1) {
-          setTimeout(() => {
-            nodes[i].classList.remove('active');
-            nodes[i].classList.add('done');
-            nodes[i].querySelector('.node-status').textContent = 'Done';
-            if (onDone) onDone();
-          }, 1200);
-        }
       }, delay);
+    });
+  }
+
+  function completeNodes() {
+    const nodes = document.querySelectorAll('.node');
+    nodes.forEach(n => {
+      n.classList.remove('active');
+      n.classList.add('done');
+      n.querySelector('.node-status').textContent = 'Done';
     });
   }
 
@@ -1125,16 +1118,8 @@
   async function runScan(url) {
     document.getElementById('scanDomain').textContent = getDomain(url);
 
-    // Start node animation in parallel with the API call
     let apiData = null;
-    let apiDone = false;
-    let animDone = false;
-
-    function tryShow() {
-      if (apiDone && animDone) showResults(apiData);
-    }
-
-    animateNodes(() => { animDone = true; tryShow(); });
+    animateNodes();
 
     try {
       const res = await fetch(API, {
@@ -1143,6 +1128,9 @@
         body: JSON.stringify({ url })
       });
       apiData = await res.json();
+      completeNodes();
+      setTimeout(() => showResults(apiData), 400);
+      return;
     } catch (err) {
       console.error('Scan failed:', err);
       // fallback demo data
@@ -1160,8 +1148,8 @@
         redesign: null
       };
     }
-    apiDone = true;
-    tryShow();
+    completeNodes();
+    setTimeout(() => showResults(apiData), 400);
   }
 
   function populateExtras(data) {
