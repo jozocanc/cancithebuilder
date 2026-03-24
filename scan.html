@@ -289,6 +289,52 @@
     .issue-tag.warn { background: rgba(240,112,32,0.15); color: var(--orange); }
     .issue-tag.info { background: rgba(255,208,0,0.15); color: var(--yellow); }
 
+
+    /* ── Redesign Card ───────────────────────────── */
+    .redesign-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-top: 2px solid var(--yellow); border-radius: 3px; overflow: hidden;
+    }
+    .redesign-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 18px; background: var(--darker);
+      border-bottom: 1px solid var(--border);
+    }
+    .redesign-header h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem; letter-spacing: 1.5px; color: var(--white);
+    }
+    .redesign-list { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .redesign-item {
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden;
+    }
+    .redesign-section {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+      color: var(--yellow); padding: 6px 12px;
+      background: rgba(255,208,0,0.05); border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .redesign-row { display: grid; grid-template-columns: 1fr 1fr; }
+    .redesign-before { padding: 10px 12px; border-right: 1px solid rgba(255,255,255,0.06); }
+    .redesign-after { padding: 10px 12px; background: rgba(255,208,0,0.03); }
+    .rd-label {
+      display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; padding: 2px 6px; border-radius: 2px; margin-bottom: 5px;
+    }
+    .rd-label.before { background: rgba(255,77,77,0.15); color: #ff6b6b; }
+    .rd-label.after { background: rgba(107,255,170,0.15); color: #6bffaa; }
+    .redesign-before p, .redesign-after p {
+      font-size: 0.72rem; color: rgba(255,255,255,0.6); line-height: 1.5;
+    }
+    .redesign-after p { color: rgba(255,255,255,0.85); }
+    .redesign-lock {
+      text-align: center; padding: 18px; border-top: 1px solid var(--border);
+      background: var(--darker);
+    }
+    .redesign-lock p { font-size: 0.78rem; color: var(--gray); margin-bottom: 4px; }
+    @media (max-width: 500px) { .redesign-row { grid-template-columns: 1fr; } .redesign-before { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); } }
+
     /* Wireframe */
     .wf-card {
       background: var(--card);
@@ -803,74 +849,40 @@
       </div>
     </div>
 
-    <!-- Wireframe -->
+    <!-- Redesign Suggestions -->
     <div>
       <div class="col-label c2"><span class="step-tag">Step 2</span> What it could look like</div>
-      <div class="wf-card">
-        <div class="wf-head">
-          <div>
-            <h4>Proposed Redesign</h4>
-            <p>Full design revealed on your strategy call</p>
-          </div>
-          <div class="wf-badge">All issues fixed</div>
+      <div class="redesign-card">
+        <div class="redesign-header">
+          <h4>Proposed Redesign</h4>
+          <div class="wf-badge">AI-Generated · Specific to Your Site</div>
         </div>
-        <div class="wf-body">
-          <div>
-            <div class="wf-col-lbl new">Hero — Fixed</div>
-            <div class="wf-frame">
-              <div class="wb xs" style="background:rgba(255,208,0,0.2);"></div>
-              <div class="wb lg acc"></div>
-              <div class="wb sm"></div>
-              <div class="wb btn"></div>
-              <div class="wf-note new" id="wfHeroFix">Analyzing...</div>
+        <div class="redesign-list" id="redesignList">
+          <div class="redesign-item">
+            <div class="redesign-section">Hero</div>
+            <div class="redesign-row">
+              <div class="redesign-before"><span class="rd-label before">Before</span><p id="rdHeroProblem">Analyzing...</p></div>
+              <div class="redesign-after"><span class="rd-label after">After</span><p id="rdHeroFix">Analyzing...</p></div>
             </div>
           </div>
-          <div>
-            <div class="wf-col-lbl old">Hero — Problem</div>
-            <div class="wf-frame old">
-              <div class="wb-old sm"></div>
-              <div class="wb-old lg"></div>
-              <div class="wb-old sm" style="width:50%;"></div>
-              <div class="wb-old btn"></div>
-              <div class="wf-note old" id="wfHeroProblem">Analyzing...</div>
+          <div class="redesign-item">
+            <div class="redesign-section">CTA</div>
+            <div class="redesign-row">
+              <div class="redesign-before"><span class="rd-label before">Before</span><p id="rdCtaProblem">Analyzing...</p></div>
+              <div class="redesign-after"><span class="rd-label after">After</span><p id="rdCtaFix">Analyzing...</p></div>
             </div>
           </div>
-          <div>
-            <div class="wf-col-lbl new">CTA — Fixed</div>
-            <div class="wf-frame">
-              <div class="wb xs" style="background:rgba(255,208,0,0.2);margin-bottom:7px;"></div>
-              <div class="wb btn"></div>
-              <div class="wf-note new" id="wfCtaFix">Analyzing...</div>
-            </div>
-          </div>
-          <div>
-            <div class="wf-col-lbl old">CTA — Problem</div>
-            <div class="wf-frame old">
-              <div class="wb-old sm" style="width:50%;"></div>
-              <div class="wb-old btn"></div>
-              <div class="wf-note old" id="wfCtaProblem">Analyzing...</div>
-            </div>
-          </div>
-          <div>
-            <div class="wf-col-lbl new">Trust — Fixed</div>
-            <div class="wf-frame">
-              <div class="wb xs" style="background:rgba(255,208,0,0.2);margin-bottom:7px;"></div>
-              <div class="wf-g"><div class="wf-gc"></div><div class="wf-gc"></div><div class="wf-gc"></div></div>
-              <div class="wf-note new" id="wfTrustFix">Analyzing...</div>
-            </div>
-          </div>
-          <div>
-            <div class="wf-col-lbl new">Booking — Fixed</div>
-            <div class="wf-frame">
-              <div class="wf-cal"><span>Embedded Calendar</span></div>
-              <div class="wb btn"></div>
-              <div class="wf-note new" id="wfNavFix">Analyzing...</div>
+          <div class="redesign-item">
+            <div class="redesign-section">Trust</div>
+            <div class="redesign-row">
+              <div class="redesign-before"><span class="rd-label before">Before</span><p id="rdTrustProblem">Analyzing...</p></div>
+              <div class="redesign-after"><span class="rd-label after">After</span><p id="rdTrustFix">Analyzing...</p></div>
             </div>
           </div>
         </div>
-        <div class="wf-lock">
-          <p>Full high-fidelity design with your brand &amp; copy —</p>
-          <p><strong>Revealed on your free strategy call</strong></p>
+        <div class="redesign-lock">
+          <p>Full high-fidelity design with your brand &amp; copy</p>
+          <a href="https://calendly.com/jozo-cancar27/30min" target="_blank" class="btn-book" style="margin-top:12px;display:inline-block;">Get It Built →</a>
         </div>
       </div>
     </div>
@@ -1102,12 +1114,12 @@
 
     // Redesign wireframe
     const r = data.redesign || {};
-    document.getElementById('wfHeroFix').textContent    = r.hero?.fix    || '';
-    document.getElementById('wfHeroProblem').textContent = r.hero?.problem || '';
-    document.getElementById('wfCtaFix').textContent     = r.cta?.fix     || '';
-    document.getElementById('wfCtaProblem').textContent  = r.cta?.problem  || '';
-    document.getElementById('wfTrustFix').textContent   = r.trust?.fix   || '';
-    document.getElementById('wfNavFix').textContent     = r.nav?.fix     || '';
+    document.getElementById('rdHeroProblem').textContent  = r.hero?.problem  || '';
+    document.getElementById('rdHeroFix').textContent      = r.hero?.fix      || '';
+    document.getElementById('rdCtaProblem').textContent   = r.cta?.problem   || '';
+    document.getElementById('rdCtaFix').textContent       = r.cta?.fix       || '';
+    document.getElementById('rdTrustProblem').textContent = r.trust?.problem || '';
+    document.getElementById('rdTrustFix').textContent     = r.trust?.fix     || '';
   }
 
   async function runScan(url) {
