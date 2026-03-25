@@ -733,6 +733,78 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.72rem; color: var(--gray); letter-spacing: 1px;
     }
+
+    /* ── Share ── */
+    .share-row {
+      display: flex; align-items: center; gap: 10px;
+      justify-content: center; flex-wrap: wrap; margin-top: 20px;
+    }
+    .share-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gray);
+    }
+    .share-btn {
+      padding: 7px 16px; border-radius: 2px; cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; transition: all 0.2s; border: 1px solid;
+    }
+    .share-wa { background: rgba(37,211,102,0.12); color: #25D366; border-color: rgba(37,211,102,0.3); }
+    .share-wa:hover { background: rgba(37,211,102,0.22); }
+    .share-sms { background: rgba(0,122,255,0.12); color: #007AFF; border-color: rgba(0,122,255,0.3); }
+    .share-sms:hover { background: rgba(0,122,255,0.22); }
+    .share-copy { background: rgba(255,255,255,0.06); color: var(--gray); border-color: var(--border); }
+    .share-copy:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* ── Competitor scan ── */
+    .competitor-scan {
+      text-align: center; margin-top: 48px; padding: 32px 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .competitor-scan h4 {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+      color: var(--white); letter-spacing: 1px; margin-bottom: 4px; text-transform: uppercase;
+    }
+    .competitor-scan p {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; color: var(--gray); letter-spacing: 1px;
+    }
+    .comp-eyebrow {
+      display: inline-block; background: rgba(240,112,32,0.15);
+      color: var(--orange); border: 1px solid rgba(240,112,32,0.3);
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 2px 10px; border-radius: 2px; margin-bottom: 8px;
+    }
+    .comp-comparison {
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; margin-top: 20px; flex-wrap: wrap;
+    }
+    .comp-site {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 16px 28px; border-radius: 4px; text-align: center;
+      min-width: 120px; transition: border-color 0.2s;
+    }
+    .comp-site.comp-winner { border-color: var(--yellow); }
+    .comp-site-name {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+      color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .comp-site-score {
+      font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem;
+      color: var(--white); line-height: 1;
+    }
+    .comp-site.comp-winner .comp-site-score { color: var(--yellow); }
+    .comp-vs {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+      color: var(--gray); letter-spacing: 2px;
+    }
+    .comp-verdict {
+      margin-top: 16px; font-family: 'Barlow', sans-serif;
+      font-size: 0.85rem; color: var(--white); font-style: italic;
+    }
+    .comp-scanning { color: var(--gray); font-family: 'Barlow', sans-serif; font-size: 0.8rem; margin-top: 14px; }
   </style>
 </head>
 <body>
@@ -1011,6 +1083,25 @@
     <div style="margin-top:20px;">
       <button class="btn-pdf" onclick="window.print()">⬇ Download Report as PDF</button>
     </div>
+    <div class="share-row">
+      <span class="share-label">Share results:</span>
+      <button class="share-btn share-wa" onclick="shareWhatsApp()">WhatsApp</button>
+      <button class="share-btn share-sms" onclick="shareSMS()">Text</button>
+      <button class="share-btn share-copy" id="copyBtn" onclick="copyLink()">Copy Link</button>
+    </div>
+  </div>
+
+  <!-- Competitor scan -->
+  <div class="competitor-scan">
+    <div class="comp-eyebrow">New</div>
+    <h4>How Does Your Competitor Stack Up?</h4>
+    <p>Enter a competitor's URL to compare their score against yours.</p>
+    <div class="scan-again-form">
+      <input class="scan-again-input" id="compUrl" type="url" placeholder="https://competitor.com" />
+      <button class="scan-again-btn comp-scan-btn" onclick="scanCompetitor()">Compare</button>
+    </div>
+    <div id="compLoading" class="comp-scanning" style="display:none;">Scanning competitor...</div>
+    <div id="compResult" style="display:none;"></div>
   </div>
 
   <!-- Scan another site -->
@@ -1218,6 +1309,87 @@
   }
   document.getElementById('newUrl')?.addEventListener('keydown', e => {
     if (e.key === 'Enter') scanAnother();
+  });
+
+  // ── Share ─────────────────────────────────────────
+  function shareWhatsApp() {
+    const domain = document.getElementById('resultDomain')?.textContent || 'my site';
+    const score = document.getElementById('scoreValue')?.textContent || '?';
+    const msg = `I just scanned ${domain} with Cancilab and got a website score of ${score}/100. Find out how your site scores: https://cancithebuilder.com`;
+    window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+  }
+
+  function shareSMS() {
+    const domain = document.getElementById('resultDomain')?.textContent || 'my site';
+    const score = document.getElementById('scoreValue')?.textContent || '?';
+    const msg = `Scanned ${domain} with Cancilab — got ${score}/100. Check your site: https://cancithebuilder.com`;
+    window.open('sms:?body=' + encodeURIComponent(msg));
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy Link'; }, 2000);
+    });
+  }
+
+  // ── Competitor scan ────────────────────────────────
+  async function scanCompetitor() {
+    const raw = document.getElementById('compUrl').value.trim();
+    if (!raw) return;
+    const compUrl = raw.startsWith('http') ? raw : 'https://' + raw;
+
+    const btn = document.querySelector('.comp-scan-btn');
+    btn.textContent = 'Scanning...';
+    btn.disabled = true;
+    document.getElementById('compLoading').style.display = 'block';
+    document.getElementById('compResult').style.display = 'none';
+
+    try {
+      const res = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: compUrl })
+      });
+      const data = await res.json();
+
+      const myScore = parseInt(document.getElementById('scoreValue')?.textContent) || 0;
+      const compScore = data.scores?.overall || 0;
+      const myDomain = document.getElementById('resultDomain')?.textContent || 'Your site';
+      const compDomain = data.domain || raw;
+      const diff = myScore - compScore;
+      const youWin = diff >= 0;
+
+      document.getElementById('compResult').innerHTML = `
+        <div class="comp-comparison">
+          <div class="comp-site ${youWin ? 'comp-winner' : ''}">
+            <div class="comp-site-name">${myDomain}</div>
+            <div class="comp-site-score">${myScore}</div>
+          </div>
+          <div class="comp-vs">VS</div>
+          <div class="comp-site ${!youWin ? 'comp-winner' : ''}">
+            <div class="comp-site-name">${compDomain}</div>
+            <div class="comp-site-score">${compScore}</div>
+          </div>
+        </div>
+        <div class="comp-verdict">${youWin
+          ? `You're ${diff === 0 ? 'tied' : `ahead by ${diff} points`} — your site is in better shape.`
+          : `They're beating you by ${Math.abs(diff)} points. Time to fix that.`
+        }</div>
+      `;
+      document.getElementById('compResult').style.display = 'block';
+    } catch (e) {
+      document.getElementById('compResult').innerHTML = '<p style="color:var(--orange);font-family:\'Barlow\',sans-serif;font-size:0.8rem;margin-top:12px;">Could not scan that URL. Check it and try again.</p>';
+      document.getElementById('compResult').style.display = 'block';
+    }
+
+    document.getElementById('compLoading').style.display = 'none';
+    btn.textContent = 'Compare';
+    btn.disabled = false;
+  }
+  document.getElementById('compUrl')?.addEventListener('keydown', e => {
+    if (e.key === 'Enter') scanCompetitor();
   });
 
   // Auto-start on load
