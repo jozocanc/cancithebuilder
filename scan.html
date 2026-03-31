@@ -818,7 +818,7 @@
 <div id="loadingScreen">
   <div class="scanning-domain">Scanning <span id="scanDomain"></span></div>
   <div class="loading-headline">Running <span>AI</span> Diagnostics...</div>
-  <p class="loading-sub">This takes about 30–60 seconds. Please don't close this tab.</p>
+  <p class="loading-sub">This takes about 20–40 seconds. Please don't close this tab.</p>
 
   <div class="nodes-wrap">
     <div class="node" id="node-0">
@@ -957,7 +957,7 @@
     <div class="revenue-icon">💸</div>
     <div class="revenue-text">
       <h4>What This Score Is Costing You</h4>
-      <p>Sites scoring below 65 lose an estimated <strong id="leadsLost">8–12 leads/month</strong> to friction, weak copy, and poor first impressions. At even a modest close rate, that's real revenue walking out the door every single month.</p>
+      <p>You're losing an estimated <strong id="leadsLost">8–12 leads/month</strong> to friction and weak first impressions.</p>
     </div>
     <div class="revenue-stat">
       <div class="rs-num" id="leadsNum">10</div>
@@ -988,11 +988,11 @@
     <div class="cs-body">
       <div class="cs-col">
         <div class="cs-col-label before">Before</div>
-        <p>Score of 41. Generic headline, email-only CTA, no testimonials, 3-second bounce rate was off the charts. Getting maybe 2–3 inquiries a month from the website.</p>
+        <p>Score 41. Generic headline, email-only CTA, no testimonials. 2–3 inquiries/month.</p>
       </div>
       <div class="cs-col">
         <div class="cs-col-label after">After Cancilab</div>
-        <p>Rewrote hero headline, replaced email CTA with embedded Calendly, added 3 client testimonials and a results stat. Launched in 6 days. Same traffic — very different outcome.</p>
+        <p>New headline, Calendly CTA, 3 testimonials added. Launched in 6 days. Same traffic.</p>
       </div>
       <div class="cs-col">
         <div class="cs-col-label result">Results (30 Days)</div>
@@ -1049,7 +1049,7 @@
   <!-- 5. Email Capture -->
   <div class="email-capture">
     <h4>Want a Copy of This Report?</h4>
-    <p>Enter your email and we'll send you the full analysis as a PDF — plus a personalized action plan.</p>
+    <p>We'll send you the full analysis as a PDF.</p>
     <div class="email-form">
       <input class="email-input" id="emailInput" type="email" placeholder="your@email.com" />
       <button class="email-btn" onclick="submitEmail()">Send My Report</button>
@@ -1072,7 +1072,7 @@
   <div class="results-cta">
     <div class="rc-eyebrow">Your Next Step</div>
     <h2>Let's Fix Every Issue —<br>In Under a Week</h2>
-    <p>Book a free 30-min strategy call. I'll walk through your full report, show you exactly what to fix, and give you a same-day proposal.</p>
+    <p>Free 30-min call. I'll walk through your report and give you a same-day proposal.</p>
     <a href="https://calendly.com/jozo-cancar27/30min" target="_blank" class="btn-book">Book My Free Strategy Call →</a>
     <div class="btn-book-sub">No commitment · No sales pressure · Same-day proposal</div>
     <div class="cta-trust">
@@ -1230,11 +1230,11 @@
         screenshot: null,
         scores: { overall: 38, label: 'Critical', performance: 31, seo: 29, ux: 44, copy: 35, conversion: 52 },
         issues: [
-          { number: 1, severity: 'crit', title: 'No clear value proposition', description: 'Your headline doesn\'t communicate what you do within the first 3 seconds.' },
-          { number: 2, severity: 'crit', title: 'Too many nav items', description: 'More than 5 links create decision paralysis and increase bounce rate.' },
-          { number: 3, severity: 'warn', title: 'Weak CTA', description: '"Learn More" has no urgency or specific outcome.' },
-          { number: 4, severity: 'warn', title: 'No social proof above fold', description: 'No trust signals visible before scrolling.' },
-          { number: 5, severity: 'info', title: 'Contact form kills momentum', description: 'Multi-day reply window loses ready-to-buy visitors.' }
+          { number: 1, severity: 'crit', title: 'No clear value proposition', description: 'Headline doesn\'t say what you do in 3 seconds.' },
+          { number: 2, severity: 'crit', title: 'Too many nav items', description: '5+ links cause decision paralysis and bounces.' },
+          { number: 3, severity: 'warn', title: 'Weak CTA copy', description: '"Learn More" has no urgency or outcome.' },
+          { number: 4, severity: 'warn', title: 'No social proof above fold', description: 'Zero trust signals before scrolling.' },
+          { number: 5, severity: 'info', title: 'Contact form kills momentum', description: 'Slow reply window loses ready buyers.' }
         ],
         redesign: null
       };
@@ -1254,8 +1254,8 @@
     // 2. Quick wins — pull info-severity issues, fallback to generic
     const infoIssues = (data.issues || []).filter(i => i.severity === 'info');
     const quickWins = infoIssues.length > 0 ? infoIssues : [
-      { title: 'Add your phone number to the nav', description: 'Visitors on mobile want to call instantly — one tap converts better than any form.', time: '5 minutes' },
-      { title: 'Add "Based in [City]" to your headline', description: 'Local keyword in your hero headline boosts local SEO with zero technical work.', time: '2 minutes' }
+      { title: 'Add your phone number to the nav', description: 'Mobile visitors want to tap and call — beats any form.', time: '5 minutes' },
+      { title: 'Add your city to your headline', description: 'Local keyword in the hero boosts local SEO instantly.', time: '2 minutes' }
     ];
     document.getElementById('quickWinsList').innerHTML = quickWins.slice(0, 3).map((w, i) => `
       <div class="qw-item">
