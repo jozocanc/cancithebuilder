@@ -161,7 +161,7 @@ function submitPackage(e) {
     });
   }
 
-  fetch('https://formspree.io/f/xdkodwkj', {
+  fetch('https://formspree.io/f/xzdkajvg', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name: name, email: email, message: message, package: pkg, items: items, total: total })
