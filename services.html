@@ -191,7 +191,31 @@
   </div>
 </div>
 
-<!-- SUMMARY -->
+<section class="summary" id="summary" style="display:none;">
+  <div class="summary-inner">
+    <div class="summary-left">
+      <p class="summary-label">Your Package</p>
+      <div class="summary-items" id="summary-items">
+      </div>
+      <div class="summary-total">
+        <span>Total</span>
+        <span id="summary-total-price">$0</span>
+      </div>
+    </div>
+    <div class="summary-right">
+      <p class="summary-label">Almost There</p>
+      <form id="package-form" onsubmit="return submitPackage(event)">
+        <input type="hidden" id="form-package" name="package" value="">
+        <input type="hidden" id="form-items" name="items" value="">
+        <input type="hidden" id="form-total" name="total" value="">
+        <input class="summary-input" type="text" name="name" id="form-name" placeholder="Your name" required>
+        <input class="summary-input" type="email" name="email" id="form-email" placeholder="Your email" required>
+        <textarea class="summary-input summary-textarea" name="message" id="form-message" placeholder="Tell me about your project (optional)"></textarea>
+        <button class="summary-submit" type="submit">Book My Free Strategy Call →</button>
+      </form>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
