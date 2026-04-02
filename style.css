@@ -1369,7 +1369,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  align-items: center;
+  align-items: stretch;
 }
 .bundle-card {
   background: rgba(255,255,255,0.03);
@@ -1378,6 +1378,8 @@
   position: relative;
   clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
   transition: border-color 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 .bundle-card:hover {
   border-color: rgba(255,208,0,0.3);
@@ -1432,6 +1434,7 @@
 .bundle-features {
   list-style: none;
   margin-bottom: 32px;
+  flex: 1;
 }
 .bundle-features li {
   font-size: 14px;
