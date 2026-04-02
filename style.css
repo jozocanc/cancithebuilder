@@ -1383,6 +1383,10 @@
 }
 .bundle-card:hover {
   border-color: rgba(255,208,0,0.3);
+  transform: scale(1.03);
+}
+.bundle-card.featured:hover {
+  transform: scale(1.07);
 }
 .bundle-card.featured {
   border-left: 3px solid var(--yellow);
