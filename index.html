@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XYY9YQW58B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XYY9YQW58B');
+  </script>
   <link rel="icon" type="image/png" href="/favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1412,9 +1420,9 @@
     <li><a href="#work">Work</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#contact">Free Scan</a></li>
-    <li><a href="https://calendly.com/jozo-cancar27/30min" target="_blank">Contact</a></li>
+    <li><a href="https://calendly.com/jozo-cancar27/30min" target="_blank" onclick="gtag('event','calendly_click',{event_category:'conversion',event_label:this.textContent.trim()})">Contact</a></li>
   </ul>
-  <a href="https://calendly.com/jozo-cancar27/30min" target="_blank" class="nav-cta">Get a Free Quote</a>
+  <a href="https://calendly.com/jozo-cancar27/30min" target="_blank" onclick="gtag('event','calendly_click',{event_category:'conversion',event_label:this.textContent.trim()})" class="nav-cta">Get a Free Quote</a>
 </nav>
 
 <!-- HERO -->
