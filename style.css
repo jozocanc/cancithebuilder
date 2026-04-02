@@ -1487,3 +1487,180 @@
   .bundle-card.featured { transform: none; }
 }
 
+/* ===== SERVICES PAGE — DIVIDER ===== */
+.svc-divider {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 60px;
+}
+.svc-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,208,0,0.15);
+}
+.svc-divider-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+/* ===== SERVICES PAGE — BUILD YOUR OWN ===== */
+.byo {
+  padding: 40px 60px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.byo-header { margin-bottom: 48px; }
+.byo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.byo-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 28px 24px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+.byo-card:hover {
+  border-color: rgba(255,208,0,0.3);
+}
+.byo-card.selected {
+  border: 2px solid var(--yellow);
+  background: rgba(255,208,0,0.04);
+}
+.byo-check {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  color: var(--yellow);
+  font-size: 16px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.byo-card.selected .byo-check { opacity: 1; }
+.byo-icon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 14px;
+}
+.byo-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.byo-desc {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 12px;
+}
+.byo-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: var(--yellow);
+}
+.byo-price span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  color: var(--gray);
+  font-weight: 400;
+}
+.byo-card:not(.selected) .byo-price { color: var(--gray); }
+.byo-qty {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.byo-card.selected .byo-qty { display: flex; }
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  background: rgba(255,208,0,0.1);
+  border: 1px solid rgba(255,208,0,0.3);
+  color: var(--yellow);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.qty-btn:hover { background: rgba(255,208,0,0.2); }
+.qty-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  color: var(--white);
+  min-width: 20px;
+  text-align: center;
+}
+.byo-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10,15,27,0.95);
+  backdrop-filter: blur(12px);
+  border-top: 2px solid var(--yellow);
+  padding: 14px 60px;
+  z-index: 99;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+.byo-sticky.visible { transform: translateY(0); }
+.byo-sticky-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.byo-sticky-total {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.byo-sticky-total span { color: var(--yellow); font-size: 18px; }
+.byo-sticky-btn {
+  background: var(--yellow);
+  color: var(--dark);
+  border: none;
+  padding: 12px 32px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: background 0.2s;
+}
+.byo-sticky-btn:hover { background: var(--orange); color: var(--white); }
+@media (max-width: 960px) {
+  .svc-divider { padding: 30px 24px; }
+  .byo { padding: 40px 24px 120px; }
+  .byo-grid { grid-template-columns: 1fr; }
+  .byo-sticky { padding: 14px 24px; }
+}
+

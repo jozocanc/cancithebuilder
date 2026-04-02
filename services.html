@@ -108,7 +108,88 @@
   </div>
 </section>
 
-<!-- BUILD YOUR OWN -->
+<div class="svc-divider">
+  <div class="svc-divider-line"></div>
+  <p class="svc-divider-text">Want Something Custom?</p>
+  <div class="svc-divider-line"></div>
+</div>
+
+<section class="byo" id="build-your-own">
+  <div class="byo-inner">
+    <div class="byo-header">
+      <p class="section-tag">Build Your Own</p>
+      <h2 class="section-title">Pick Exactly <span>What You Need</span></h2>
+    </div>
+    <div class="byo-grid">
+      <div class="byo-card" data-service="landing" data-price="399" onclick="toggleService(this)">
+        <div class="byo-check">✓</div>
+        <span class="byo-icon">🌐</span>
+        <h3 class="byo-title">Landing Page</h3>
+        <p class="byo-desc">Single high-converting page</p>
+        <p class="byo-price">$399</p>
+      </div>
+      <div class="byo-card has-qty" data-service="extra-page" data-price="150" onclick="toggleService(this)">
+        <div class="byo-check">✓</div>
+        <span class="byo-icon">📄</span>
+        <h3 class="byo-title">Additional Page</h3>
+        <p class="byo-desc">Add pages to your site</p>
+        <p class="byo-price">$150<span>/page</span></p>
+        <div class="byo-qty" onclick="event.stopPropagation()">
+          <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="byo-card" data-service="redesign" data-price="499" onclick="toggleService(this)">
+        <div class="byo-check">✓</div>
+        <span class="byo-icon">🔄</span>
+        <h3 class="byo-title">Website Redesign</h3>
+        <p class="byo-desc">Modernize your existing site</p>
+        <p class="byo-price">$499</p>
+      </div>
+      <div class="byo-card" data-service="seo" data-price="249" onclick="toggleService(this)">
+        <div class="byo-check">✓</div>
+        <span class="byo-icon">📈</span>
+        <h3 class="byo-title">SEO & Google Rankings</h3>
+        <p class="byo-desc">Get found on Google</p>
+        <p class="byo-price">$249</p>
+      </div>
+      <div class="byo-card" data-service="analytics" data-price="149" onclick="toggleService(this)">
+        <div class="byo-check">✓</div>
+        <span class="byo-icon">📊</span>
+        <h3 class="byo-title">Analytics & Tracking</h3>
+        <p class="byo-desc">Know your numbers</p>
+        <p class="byo-price">$149</p>
+      </div>
+      <div class="byo-card has-qty" data-service="copywriting" data-price="99" onclick="toggleService(this)">
+        <div class="byo-check">✓</div>
+        <span class="byo-icon">✍️</span>
+        <h3 class="byo-title">Professional Copywriting</h3>
+        <p class="byo-desc">I write your content</p>
+        <p class="byo-price">$99<span>/page</span></p>
+        <div class="byo-qty" onclick="event.stopPropagation()">
+          <button class="qty-btn" onclick="changeQty(this, -1)">−</button>
+          <span class="qty-num">1</span>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+      </div>
+      <div class="byo-card" data-service="maintenance" data-price="300" data-recurring="true" onclick="toggleService(this)">
+        <div class="byo-check">✓</div>
+        <span class="byo-icon">🔧</span>
+        <h3 class="byo-title">Monthly Maintenance & Growth</h3>
+        <p class="byo-desc">Ongoing updates, SEO, reports</p>
+        <p class="byo-price">$300<span>/mo</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="byo-sticky" id="byo-sticky">
+  <div class="byo-sticky-inner">
+    <p class="byo-sticky-total">Your Total: <span id="byo-total">$0</span></p>
+    <button class="byo-sticky-btn" onclick="continueByo()">Continue →</button>
+  </div>
+</div>
 
 <!-- SUMMARY -->
 
